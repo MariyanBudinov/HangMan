@@ -1,0 +1,20 @@
+body {
+    background-color: grey;
+}
+
+
+/* hidden panel elements */
+
+.hiddenPanel {
+    border: yellow 5px solid;
+}
+
+.hiddenBox h2 {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 40px;
+    color: cyan;
+    border: black 5px solid;
+    width: 40px;
+    height: 40px;
+}
