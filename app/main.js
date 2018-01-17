@@ -1,11 +1,22 @@
 'use strict';
 
-let HiddenWordBuilder = require('./HiddenWordBuilder.js');
+document.addEventListener('DOMContentLoaded', () => {
 
-let enterWordButton = document.querySelector('.enterWordButton'),
-    inputElement = document.querySelector('.inputWord');
+    const HiddenWordBuilder = require('./HiddenWordBuilder.js');
 
-enterWordButton.addEventListener('click', () => {
-    let inputWord = inputElement.value,
-        word = new HiddenWordBuilder(inputWord);
-});
+    let enterWordButton = document.querySelector('.enter-word-button'),
+        inputElement = document.querySelector('.input-word'),
+        inputPannel = document.querySelector('.hidden-panel');
+
+    enterWordButton.addEventListener('click', () => {
+        inputPannel.innerHTML = "";
+        let inputWord = inputElement.value.toUpperCase();
+        new HiddenWordBuilder(inputWord, inputElement, enterWordButton);
+        enterWordButton.classList.add('disable');
+    });
+
+    inputElement.addEventListener('focus', () => {
+        enterWordButton.classList.remove('disable');
+    });
+
+})

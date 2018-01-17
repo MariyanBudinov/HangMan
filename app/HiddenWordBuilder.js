@@ -2,41 +2,46 @@
 
 class HiddenWordBuilder {
 
-    constructor(insertedText) {
-        this.inputWord = this.validate(insertedText);
-        console.log("inputWord = ", this.inputWord);
-
-        this.buildSimbolBox();
+    constructor(insertedText, input, button) {
+        this.inputWord = this._validate(insertedText);
+        this.input = input;
+        this.button = button;
+        console.log("this.inputWord = ", this.inputWord)
+        console.log("this.input = ", this.inputWord)
+        console.log("this.button = ", this.inputWord)
+        console.log("ALL = ", insertedText, input, button)
+        this._buildSimbolBox();
     }
 
-    validate(text) {
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA");
+    _validate(text) {
         let textArr = text.split(''),
             numberArr = textArr.filter(simbol => {
-                return parseInt(simbol) === 'number';
+                return !isNaN(simbol);
             });
+
         if (numberArr.length !== 0) {
-            alert('No numbers please !');
+            alert(`You use ${numberArr}. No numbers please!`);
             return false;
         } else {
             return textArr;
         }
     }
 
-    buildSimbolBox() {
-        console.log("BBBBBBBBBBBBBBBBBBBBBBB/inputWord = ", this.inputWord);
-
-        if (!this.inputWord) return;
-
-        let hiddenPanel = document.querySelector('.hiddenPanel');
+    _buildSimbolBox() {
+        if (!this.inputWord || this.inputWord.length === 0) {
+            alert(`Please type some word!`);
+            this.input.focus();
+            return;
+        }
+        let hiddenPanel = document.querySelector('.hidden-panel');
 
         console.log("hiddenPanel = ", hiddenPanel);
 
-        this.inputWord.forEach(word => {
+        this.inputWord.forEach(letter => {
             let box = document.createElement('div'),
                 text = document.createElement('h2');
-            text.innerHTML = word;
-            box.className = 'hiddenBox';
+            text.innerHTML = letter;
+            box.className = 'hidden-box';
             box.appendChild(text);
             hiddenPanel.appendChild(box);
         })
