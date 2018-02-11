@@ -7,10 +7,9 @@ class HiddenWordBuilder {
         this.inputWord = this._validate(insertedText);
         this.input = input;
         this.button = button;
-        console.log("this.inputWord = ", this.inputWord)
-        console.log("this.input = ", this.inputWord)
-        console.log("this.button = ", this.inputWord)
-        console.log("ALL = ", insertedText, input, button)
+        console.warn("this.inputWord = ", this.inputWord);
+        console.warn("this.input = ", this.input);
+        console.warn("this.button = ", this.button);
         this._buildSimbolBox();
     }
 
@@ -36,7 +35,7 @@ class HiddenWordBuilder {
         }
         let hiddenPanel = document.querySelector('.hidden-panel');
 
-        console.log("hiddenPanel = ", hiddenPanel);
+        console.warn("hiddenPanel = ", hiddenPanel);
 
         this.inputWord.forEach(letter => {
             let box = document.createElement('div'),

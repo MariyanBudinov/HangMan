@@ -1,24 +1,83 @@
 body {
-    background-color: grey;
+    height: 100%;
+    width: 100%;
+    background-color: darkslategray;
+}
+
+title {
+    display: block;
+    height: 20%;
+    width: 100%;
+}
+
+h1 {
+    margin-left: 35%;
 }
 
 
-/* hidden panel elements */
+/* INPUT SECTION */
+
+.input-section {
+    display: inline-block;
+    border: greenyellow 2px solid;
+    height: 100px;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.input-word {
+    float: left;
+    height: 80%;
+    width: 30%;
+    border-radius: 10%;
+    font-size: 30px;
+    color: darkslategrey;
+}
+
+.enter-word-button {
+    font-size: 30px;
+    float: right;
+    height: 90%;
+    width: 30%;
+    border-radius: 10%;
+    background-color: green;
+    color: white;
+}
+
+
+/* HIDDEN PANEL ELEMENTS */
 
 .hidden-panel {
-    border: yellow 5px solid;
+    border: yellow 2px solid;
+    display: inline-block;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.hidden-box {
+    float: left;
+    width: 10%;
+    height: 100%;
 }
 
 .hidden-box h2 {
     text-align: center;
     vertical-align: middle;
     font-size: 40px;
-    color: cyan;
-    border: black 5px solid;
-    width: 40px;
-    height: 40px;
+    color: white;
+    border: orangered 2px solid;
+    width: 100%;
+    height: 100%;
 }
 
 .disable {
     display: none;
+}
+
+canvas {
+    margin: auto;
+    border: solid 2px cyan;
+    width: 60%;
+    margin-left: 20%;
+    height: 300px;
 }
