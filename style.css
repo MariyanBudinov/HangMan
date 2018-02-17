@@ -30,12 +30,12 @@ h1 {
     height: 80%;
     width: 30%;
     border-radius: 10%;
-    font-size: 30px;
+    font-size: 20px;
     color: darkslategrey;
 }
 
 .enter-word-button {
-    font-size: 30px;
+    font-size: 20px;
     float: right;
     height: 90%;
     width: 30%;
@@ -70,7 +70,7 @@ h1 {
     height: 100%;
 }
 
-.disable {
+.disabled {
     display: none;
 }
 
