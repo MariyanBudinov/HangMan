@@ -113,10 +113,10 @@ class HiddenWordBuilder {
                 hiddenBoxes = document.querySelectorAll('.hidden-box'),
                 guessLetter = guessInput.value.toUpperCase();
             if (guessLetter !== inputWordString.replace(/,/g, '')) {
-                if (guessLetter.length !== 1) {
+                if (guessLetter.length > 1) {
                     return alert('No no no, you can only guess one by one letters in word !');
                 }
-                if (!inputWord.includes(guessLetter.toUpperCase())) {
+                if (!guessLetter || !inputWord.includes(guessLetter.toUpperCase())) {
                     guessInput.value = '';
                     guessInput.focus();
                     return alert('WRONG !');
