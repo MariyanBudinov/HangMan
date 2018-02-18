@@ -9,10 +9,13 @@ class MainApp {
         this.inputElement = document.querySelector('.input-word');
         this.hiddenPannel = document.querySelector('.hidden-panel');
         this.hiddenWordBuilder = new HiddenWordBuilder();
-        this.loadEnterEvents();
+        this._loadEnterEvents();
     }
 
-    loadEnterEvents() {
+    /**
+     * @private
+     */
+    _loadEnterEvents() {
         this.enterWordButton.addEventListener('click', event => {
             event.preventDefault();
             this._enterWord();
