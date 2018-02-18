@@ -12,6 +12,7 @@ title {
 
 h1 {
     margin-left: 35%;
+    color: aqua;
 }
 
 
@@ -19,7 +20,7 @@ h1 {
 
 .input-section {
     display: inline-block;
-    border: greenyellow 2px solid;
+    border: sandybrown 5px solid;
     height: 100px;
     width: 90%;
     margin-left: 5%;
@@ -29,8 +30,10 @@ h1 {
     float: left;
     height: 80%;
     width: 30%;
+    border: palevioletred 5px solid;
     border-radius: 10%;
     font-size: 20px;
+    background-color: paleturquoise;
     color: darkslategrey;
 }
 
@@ -39,16 +42,67 @@ h1 {
     float: right;
     height: 90%;
     width: 30%;
+    border: greenyellow 5px solid;
     border-radius: 10%;
     background-color: green;
+    color: greenyellow;
+}
+
+.guess-box {
+    margin: auto;
+    height: 80%;
+    width: 80%;
+}
+
+.guess-box>div {
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+}
+
+.guess-input {
+    float: left;
+    width: 100%;
+    height: 100%;
+    border: brown 5px solid;
+    border-radius: 10%;
+    text-align: center;
+    font-size: 30px;
+    color: brown;
+    background-color: yellow;
+}
+
+.guess-button {
+    float: left;
+    margin-left: 10%;
+    width: 90%;
+    height: 100%;
+    border: greenyellow 5px solid;
+    border-radius: 10%;
+    text-align: center;
+    font-size: 30px;
     color: white;
+    background-color: green;
+}
+
+.exit-button {
+    float: left;
+    margin-right: 10%;
+    width: 90%;
+    height: 100%;
+    border: red 5px solid;
+    border-radius: 10%;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    background-color: brown;
 }
 
 
 /* HIDDEN PANEL ELEMENTS */
 
 .hidden-panel {
-    border: yellow 2px solid;
+    border: yellow 5px solid;
     display: inline-block;
     width: 90%;
     margin-left: 5%;
@@ -58,9 +112,10 @@ h1 {
     float: left;
     width: 10%;
     height: 100%;
+    margin-left: 1%;
 }
 
-.hidden-box h2 {
+.hidden-box>h2 {
     text-align: center;
     vertical-align: middle;
     font-size: 40px;
@@ -74,9 +129,12 @@ h1 {
     display: none;
 }
 
+
+/* CANVAS SECTION */
+
 canvas {
     margin: auto;
-    border: solid 2px cyan;
+    border: cyan 5px solid;
     width: 60%;
     margin-left: 20%;
     height: 300px;
