@@ -115,6 +115,11 @@ h1 {
     border: purple 4px solid;
     width: 50px;
     height: 50px;
+    background-color: yellow;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 40px;
+    color: red;
 }
 
 .signs {
