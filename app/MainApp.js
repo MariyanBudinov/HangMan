@@ -7,7 +7,7 @@ class MainApp {
     constructor() {
         this.enterWordButton = document.querySelector('.enter-word-button');
         this.inputElement = document.querySelector('.input-word');
-        this.hiddenPannel = document.querySelector('.hidden-panel');
+        this.hiddenPanel = document.querySelector('.hidden-panel');
         this.hiddenWordBuilder = new HiddenWordBuilder();
         this._loadEnterEvents();
     }
@@ -27,7 +27,9 @@ class MainApp {
                 this._enterWord();
             }
         });
-        this.inputElement.addEventListener('focus', () => this.enterWordButton.classList.remove('disabled'));
+        this.inputElement.addEventListener('focus', () => {
+            if (this.enterWordButton.classList.contains('disabled')) this.enterWordButton.classList.remove('disabled');
+        });
     }
 
     /**
@@ -36,14 +38,13 @@ class MainApp {
      * @private
      */
     _enterWord() {
-        this.hiddenPannel.innerHTML = "";
+        this.hiddenPanel.innerHTML = "";
+        if (this.hiddenPanel.classList.contains('disabled')) this.hiddenPanel.classList.remove('disabled');
         let inputWord = this.inputElement.value.toUpperCase();
         this.hiddenWordBuilder.buildSimbolBox(inputWord, this.inputElement);
         this.enterWordButton.classList.add('disabled');
         this.inputElement.blur();
     }
-
-
 
 }
 

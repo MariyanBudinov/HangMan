@@ -8,7 +8,7 @@ class MainApp {
     constructor() {
         this.enterWordButton = document.querySelector('.enter-word-button');
         this.inputElement = document.querySelector('.input-word');
-        this.hiddenPannel = document.querySelector('.hidden-panel');
+        this.hiddenPanel = document.querySelector('.hidden-panel');
         this.hiddenWordBuilder = new HiddenWordBuilder();
         this._loadEnterEvents();
     }
@@ -28,7 +28,9 @@ class MainApp {
                 this._enterWord();
             }
         });
-        this.inputElement.addEventListener('focus', () => this.enterWordButton.classList.remove('disabled'));
+        this.inputElement.addEventListener('focus', () => {
+            if (this.enterWordButton.classList.contains('disabled')) this.enterWordButton.classList.remove('disabled');
+        });
     }
 
     /**
@@ -37,14 +39,13 @@ class MainApp {
      * @private
      */
     _enterWord() {
-        this.hiddenPannel.innerHTML = "";
+        this.hiddenPanel.innerHTML = "";
+        if (this.hiddenPanel.classList.contains('disabled')) this.hiddenPanel.classList.remove('disabled');
         let inputWord = this.inputElement.value.toUpperCase();
         this.hiddenWordBuilder.buildSimbolBox(inputWord, this.inputElement);
         this.enterWordButton.classList.add('disabled');
         this.inputElement.blur();
     }
-
-
 
 }
 
@@ -72,6 +73,7 @@ class HiddenWordBuilder {
             guessBox = document.querySelector('.guess-box');
         if (!inputWord || inputWord.length === 0) {
             alert(`Please type some word!`);
+            hiddenPanel.classList.add('disabled');
             input.focus();
             return;
         }
@@ -92,11 +94,11 @@ class HiddenWordBuilder {
     _loadExitGuessButtons(guessBox, input, hiddenPanel, inputWord) {
         let exitButton = document.querySelector('.exit-button'),
             guessButton = document.querySelector('.guess-button'),
+            guessInput = document.querySelector('.guess-input'),
 
             guessListener = (event) => {
                 event.preventDefault();
-                let guessInput = document.querySelector('.guess-input'),
-                    inputWordString = inputWord.toString(),
+                let inputWordString = inputWord.toString(),
                     hiddenBoxes = document.querySelectorAll('.hidden-box'),
                     guessLetter = guessInput.value.toUpperCase();
                 if (guessLetter !== inputWordString.replace(/,/g, '')) {
@@ -131,10 +133,11 @@ class HiddenWordBuilder {
                     });
                 }
                 if ([...hiddenBoxes].every(hiddenBox => hiddenBox.innerHTML && hiddenBox.innerHTML !== '?')) {
+                    guessButton.classList.add('disabled');
                     TweenMax.staggerTo(hiddenBoxes, 1, {
                         rotation: 360,
                         onCompleteAll: () => {
-                            [...document.querySelectorAll('.signs')].forEach(sign => {
+                            document.querySelectorAll('.signs').forEach(sign => {
                                 TweenLite.set(sign, { backgroundColor: "hsl(212 , 100%, 30%)" });
                             });
                         },
@@ -146,16 +149,27 @@ class HiddenWordBuilder {
                 if (confirm('Are you shure ?')) {
                     event.preventDefault();
                     hiddenPanel.innerHTML = '';
+                    hiddenPanel.classList.add('disabled');
                     guessBox.classList.toggle('disabled', true);
                     input.classList.toggle('disabled', false);
                     input.focus();
                     exitButton.removeEventListener('click', exitListener);
                     guessButton.removeEventListener('click', guessListener);
+                    document.body.removeEventListener('keydown', guessEnterListener);
                 }
+            },
+
+            guessEnterListener = (event) => {
+                let isGuessButtonDisabled = !guessButton.classList.contains('disabled');
+                if (event.keyCode === 13 && isGuessButtonDisabled) guessListener(event);
             };
 
+        if (guessButton.classList.contains('disabled')) guessButton.classList.remove('disabled');
+
+        guessInput.focus();
         exitButton.addEventListener('click', exitListener);
         guessButton.addEventListener('click', guessListener);
+        document.body.addEventListener('keydown', guessEnterListener);
     }
 
     /**
