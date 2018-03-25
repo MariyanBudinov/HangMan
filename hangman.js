@@ -81,6 +81,14 @@ class HiddenWordBuilder {
         input.classList.toggle('disabled', true);
         this._loadExitGuessButtons(guessBox, input, hiddenPanel, inputWord);
         inputWord.forEach(letter => this._createAppendElement('div', 'hidden-box', hiddenPanel, '?'));
+        TweenMax.staggerFromTo(document.querySelectorAll('.hidden-box'), 1, {
+            opacity: 0,
+            y: '-1000px'
+        }, {
+            opacity: 1,
+            y: '0px',
+            ease: Power3.easeOut
+        }, 0.5);
     }
 
     /**
@@ -134,14 +142,7 @@ class HiddenWordBuilder {
                 }
                 if ([...hiddenBoxes].every(hiddenBox => hiddenBox.innerHTML && hiddenBox.innerHTML !== '?')) {
                     guessButton.classList.add('disabled');
-                    TweenMax.staggerTo(hiddenBoxes, 1, {
-                        rotation: 360,
-                        onCompleteAll: () => {
-                            document.querySelectorAll('.signs').forEach(sign => {
-                                TweenLite.set(sign, { backgroundColor: "hsl(212 , 100%, 30%)" });
-                            });
-                        },
-                    }, 0.5)
+                    TweenMax.staggerTo(hiddenBoxes, 1, { rotation: 360 }, 0.5)
                 };
             },
 
@@ -187,19 +188,6 @@ class HiddenWordBuilder {
         if (addText) newElement.innerHTML = addText;
 
         parent.appendChild(newElement);
-
-        if (className === 'hidden-box') {
-            TweenMax.fromTo(newElement, 5, {
-                opacity: 0,
-                width: '1000px',
-                height: '1000px'
-            }, {
-                opacity: 1,
-                width: '50px',
-                height: '50px',
-                ease: Power3.easeOut
-            });
-        }
 
         if (className === 'signs') {
             TweenMax.fromTo(newElement, 1, {
