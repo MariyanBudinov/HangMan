@@ -89,6 +89,7 @@ class HiddenWordBuilder {
             y: '0px',
             ease: Power3.easeOut
         }, 0.5);
+        document.body.style.backgroundImage = `url("./app/assets/background_game.gif")`;
     }
 
     /**
@@ -157,6 +158,7 @@ class HiddenWordBuilder {
                     exitButton.removeEventListener('click', exitListener);
                     guessButton.removeEventListener('click', guessListener);
                     document.body.removeEventListener('keydown', guessEnterListener);
+                    document.body.style.backgroundImage = `url("./app/assets/background_main.gif")`;
                 }
             },
 
