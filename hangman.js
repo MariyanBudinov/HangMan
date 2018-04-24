@@ -2,6 +2,7 @@
 'use strict';
 
 const HiddenWordBuilder = require('./components/HiddenWordBuilder.js');
+const { TweenMax, TweenLite, Bounce, Power3 } = require('gsap');
 
 class MainApp {
 
@@ -9,8 +10,10 @@ class MainApp {
         this.enterWordButton = document.querySelector('.enter-word-button');
         this.inputElement = document.querySelector('.input-word');
         this.hiddenPanel = document.querySelector('.hidden-panel');
+        this.canvas = document.querySelector('canvas');
         this.hiddenWordBuilder = new HiddenWordBuilder();
         this._loadEnterEvents();
+        this._animateLogo();
     }
 
     /**
@@ -44,13 +47,23 @@ class MainApp {
         let inputWord = this.inputElement.value.toUpperCase();
         this.hiddenWordBuilder.buildSimbolBox(inputWord, this.inputElement);
         this.enterWordButton.classList.add('disabled');
+        this.canvas.classList.remove('disabled');
         this.inputElement.blur();
+    }
+
+    _animateLogo() {
+        let logoImg = document.querySelector('.title>img');
+        TweenMax.fromTo(logoImg, 5, {
+            opacity: 0
+        }, {
+            opacity: 1
+        });
     }
 
 }
 
 module.exports = MainApp;
-},{"./components/HiddenWordBuilder.js":2}],2:[function(require,module,exports){
+},{"./components/HiddenWordBuilder.js":2,"gsap":5}],2:[function(require,module,exports){
 'use strict';
 
 const ALLOWED_SIGNS = require('../config/signsConfig.js').allowedSigns;
@@ -104,6 +117,7 @@ class HiddenWordBuilder {
         let exitButton = document.querySelector('.exit-button'),
             guessButton = document.querySelector('.guess-button'),
             guessInput = document.querySelector('.guess-input'),
+            canvas = document.querySelector('canvas'),
 
             guessListener = (event) => {
                 event.preventDefault();
@@ -151,8 +165,9 @@ class HiddenWordBuilder {
                 if (confirm('Are you shure ?')) {
                     event.preventDefault();
                     hiddenPanel.innerHTML = '';
-                    hiddenPanel.classList.add('disabled');
+                    hiddenPanel.classList.toggle('disabled', true);
                     guessBox.classList.toggle('disabled', true);
+                    canvas.classList.toggle('disabled', true);
                     input.classList.toggle('disabled', false);
                     input.focus();
                     exitButton.removeEventListener('click', exitListener);

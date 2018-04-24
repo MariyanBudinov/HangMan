@@ -1,6 +1,7 @@
 'use strict';
 
 const HiddenWordBuilder = require('./components/HiddenWordBuilder.js');
+const { TweenMax, TweenLite, Bounce, Power3 } = require('gsap');
 
 class MainApp {
 
@@ -8,8 +9,10 @@ class MainApp {
         this.enterWordButton = document.querySelector('.enter-word-button');
         this.inputElement = document.querySelector('.input-word');
         this.hiddenPanel = document.querySelector('.hidden-panel');
+        this.canvas = document.querySelector('canvas');
         this.hiddenWordBuilder = new HiddenWordBuilder();
         this._loadEnterEvents();
+        this._animateLogo();
     }
 
     /**
@@ -43,7 +46,17 @@ class MainApp {
         let inputWord = this.inputElement.value.toUpperCase();
         this.hiddenWordBuilder.buildSimbolBox(inputWord, this.inputElement);
         this.enterWordButton.classList.add('disabled');
+        this.canvas.classList.remove('disabled');
         this.inputElement.blur();
+    }
+
+    _animateLogo() {
+        let logoImg = document.querySelector('.title>img');
+        TweenMax.fromTo(logoImg, 5, {
+            opacity: 0
+        }, {
+            opacity: 1
+        });
     }
 
 }

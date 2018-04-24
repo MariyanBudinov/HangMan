@@ -51,6 +51,7 @@ class HiddenWordBuilder {
         let exitButton = document.querySelector('.exit-button'),
             guessButton = document.querySelector('.guess-button'),
             guessInput = document.querySelector('.guess-input'),
+            canvas = document.querySelector('canvas'),
 
             guessListener = (event) => {
                 event.preventDefault();
@@ -98,8 +99,9 @@ class HiddenWordBuilder {
                 if (confirm('Are you shure ?')) {
                     event.preventDefault();
                     hiddenPanel.innerHTML = '';
-                    hiddenPanel.classList.add('disabled');
+                    hiddenPanel.classList.toggle('disabled', true);
                     guessBox.classList.toggle('disabled', true);
+                    canvas.classList.toggle('disabled', true);
                     input.classList.toggle('disabled', false);
                     input.focus();
                     exitButton.removeEventListener('click', exitListener);
