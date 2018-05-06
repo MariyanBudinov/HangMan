@@ -17,13 +17,16 @@ class HiddenWordBuilder {
     buildSimbolBox(insertedText, input) {
         let inputWord = this._validate(insertedText),
             hiddenPanel = document.querySelector('.hidden-panel'),
-            guessBox = document.querySelector('.guess-box');
+            guessBox = document.querySelector('.guess-box'),
+            canvas = document.querySelector('canvas');
+
         if (!inputWord || inputWord.length === 0) {
             alert(`Please type some word!`);
             hiddenPanel.classList.add('disabled');
             input.focus();
             return;
         }
+        canvas.classList.toggle('disabled', false);
         guessBox.classList.toggle('disabled', false);
         input.classList.toggle('disabled', true);
         this._loadExitGuessButtons(guessBox, input, hiddenPanel, inputWord);

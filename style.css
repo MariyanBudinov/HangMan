@@ -18,13 +18,6 @@ body {
     /* filter: drop-shadow(1px 1px 10px cyan); */
 }
 
-.title:hover {
-    background-color: rgba(0, 92, 92, 0.9);
-    -webkit-transition: background-color 1s ease;
-    -moz-transition: background-color 1s ease;
-    transition: background-color 1s ease;
-}
-
 img {
     height: 50%;
     width: 50%;

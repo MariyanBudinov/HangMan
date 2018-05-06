@@ -10,7 +10,6 @@ class MainApp {
         this.enterWordButton = document.querySelector('.enter-word-button');
         this.inputElement = document.querySelector('.input-word');
         this.hiddenPanel = document.querySelector('.hidden-panel');
-        this.canvas = document.querySelector('canvas');
         this.hiddenWordBuilder = new HiddenWordBuilder();
         this._loadEnterEvents();
         this._animateLogo();
@@ -47,7 +46,6 @@ class MainApp {
         let inputWord = this.inputElement.value.toUpperCase();
         this.hiddenWordBuilder.buildSimbolBox(inputWord, this.inputElement);
         this.enterWordButton.classList.add('disabled');
-        this.canvas.classList.remove('disabled');
         this.inputElement.blur();
     }
 
@@ -83,13 +81,16 @@ class HiddenWordBuilder {
     buildSimbolBox(insertedText, input) {
         let inputWord = this._validate(insertedText),
             hiddenPanel = document.querySelector('.hidden-panel'),
-            guessBox = document.querySelector('.guess-box');
+            guessBox = document.querySelector('.guess-box'),
+            canvas = document.querySelector('canvas');
+
         if (!inputWord || inputWord.length === 0) {
             alert(`Please type some word!`);
             hiddenPanel.classList.add('disabled');
             input.focus();
             return;
         }
+        canvas.classList.toggle('disabled', false);
         guessBox.classList.toggle('disabled', false);
         input.classList.toggle('disabled', true);
         this._loadExitGuessButtons(guessBox, input, hiddenPanel, inputWord);
