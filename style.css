@@ -1,7 +1,7 @@
 body {
     height: 100%;
     width: 100%;
-    background-image: url("./app/assets/background_main.gif");
+    background-image: url("./app/assets/images/background_main.gif");
     background-repeat: repeat;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
